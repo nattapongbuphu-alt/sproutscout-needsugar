@@ -19,8 +19,6 @@ public class Sword : Weapon
             IDamageable target = hit.GetComponent<IDamageable>();
             if (target != null)
                 target.TakeDamage(damage);
-
-            Debug.Log("โจมตี");
         }
         
     }
