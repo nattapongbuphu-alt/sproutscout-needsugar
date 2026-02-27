@@ -501,8 +501,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerCombat
   weapons:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1704694036840571675, guid: 4b028617f8d14d7468dc4983f62e9a72, type: 3}
+  - {fileID: 88477870755213557, guid: cec09a2a0c68c2747a3a9f9d33726110, type: 3}
   - {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
