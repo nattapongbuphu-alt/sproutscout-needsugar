@@ -1,24 +1,42 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerCombat : MonoBehaviour
 {
     [SerializeField] private Weapon[] weapons;
     private int currentIndex = 0;
 
-    void Update()
-    {
-        HandleWeaponSwitch();
+    private PlayerInputActions inputActions;
 
-        if (Input.GetMouseButtonDown(0))
+    private void Awake()
+    {
+        inputActions = new PlayerInputActions();
+    }
+
+    private void OnEnable()
+    {
+        inputActions.Enable();
+
+        inputActions.Player.Switch1.performed += ctx => currentIndex = 0;
+        inputActions.Player.Switch2.performed += ctx => currentIndex = 1;
+        inputActions.Player.Switch3.performed += ctx => currentIndex = 2;
+
+        inputActions.Player.Attack.performed += ctx =>
         {
-            weapons[currentIndex]?.TryUse();
-        }
+            //if (HasWeapon())
+                weapons[currentIndex].TryUse();
+        };
     }
 
-    void HandleWeaponSwitch()
+    private void OnDisable()
     {
-        if (Input.GetKeyDonw(keyCode.Alpha1)) currentIndex = 0;
-        if (Input.GetKeyDonw(keyCode.Alpha2)) currentIndex = 1;
-        if (Input.GetKeyDonw(keyCode.Alpha3)) currentIndex = 2;
+        inputActions.Disable();
     }
+
+    //public bool HasWeapon()
+    //{
+    //    return weapons != null &&
+    //           weapons.Length > currentIndex &&
+    //           weapons[currentIndex] != null;
+    //}
 }

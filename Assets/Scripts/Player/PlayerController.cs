@@ -22,7 +22,7 @@ public class PlayerController : Character
         Shield shield = GetComponentInChildren<Shield>();
 
         if (shield != null && shield.IsActive())
-            damage *= 0.3f;
+            damage = Mathf.RoundToInt(damage * 0.3f);
 
         base.TakeDamage(damage);
     }

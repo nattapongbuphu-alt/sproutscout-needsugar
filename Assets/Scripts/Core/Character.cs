@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Character : MonoBehaviour
+public class Character : MonoBehaviour , IDamageable
 {
     [SerializeField] protected int maxHP = 100;
     protected int currentHP;
@@ -10,14 +10,18 @@ public class Character : MonoBehaviour
         currentHP = maxHP;
     }
 
-    void Start()
+    public virtual void TakeDamage(int damage)
     {
-        
+        currentHP -= damage;
+
+        if (currentHP <= 0)
+        {
+            Die();
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    protected virtual void Die()
     {
-        
+        Destroy(gameObject);
     }
 }
