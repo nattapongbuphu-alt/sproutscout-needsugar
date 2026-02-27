@@ -106,8 +106,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Bomb
   cooldown: 1
-  bombPrefab: {fileID: 0}
-  throwPoint: {fileID: 0}
+  bombPrefab: {fileID: 667893118322340882}
+  throwPoint: {fileID: 6871143039934167940}
 --- !u!114 &3545248149253838895
 MonoBehaviour:
   m_ObjectHideFlags: 0
