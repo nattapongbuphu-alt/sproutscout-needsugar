@@ -1,42 +1,40 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerCombat : MonoBehaviour
 {
-    [SerializeField] private Weapon[] weapons;
-    private int currentIndex = 0;
+    private Weapon currentWeapon;
+    private Inventory inventory;
 
-    private PlayerInputActions inputActions;
-
-    private void Awake()
+    void Awake()
     {
-        inputActions = new PlayerInputActions();
+        inventory = GetComponent<Inventory>();
     }
 
-    private void OnEnable()
+    public void EquipFromInventory(ItemData item)
     {
-        inputActions.Enable();
+        if (item == null) return;
+        if (item.itemType != ItemType.Weapon) return;
 
-        inputActions.Player.Switch1.performed += ctx => currentIndex = 0;
-        inputActions.Player.Switch2.performed += ctx => currentIndex = 1;
-        inputActions.Player.Switch3.performed += ctx => currentIndex = 2;
+        // ลบของเก่า
+        if (currentWeapon != null)
+            Destroy(currentWeapon.gameObject);
 
-        inputActions.Player.Attack.performed += ctx =>
-        {
-            //if (HasWeapon())
-                weapons[currentIndex].TryUse();
-        };
+        // สร้างอาวุธใหม่
+        GameObject weaponObj = Instantiate(
+            item.weaponPrefab,
+            transform
+        );
+
+        currentWeapon = weaponObj.GetComponent<Weapon>();
     }
 
-    private void OnDisable()
+    public void UseCurrentWeapon(ItemData item)
     {
-        inputActions.Disable();
-    }
+        if (currentWeapon == null) return;
 
-    //public bool HasWeapon()
-    //{
-    //    return weapons != null &&
-    //           weapons.Length > currentIndex &&
-    //           weapons[currentIndex] != null;
-    //}
+        currentWeapon.StartUse();
+
+        // ถ้าเป็นอาวุธแบบใช้แล้วหมด เช่น มะเขือเทศ
+        inventory.RemoveItem(item, 1);
+    }
 }
