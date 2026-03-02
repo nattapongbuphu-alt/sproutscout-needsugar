@@ -6,7 +6,9 @@ public class Inventory : MonoBehaviour
     public int maxSlots = 20;
     public List<InventorySlot> slots = new List<InventorySlot>();
 
-    public ItemData testItem;
+
+    [SerializeField] private ItemData meleeItem;
+    [SerializeField] private ItemData rangedItem;
 
     void Awake()
     {
@@ -18,18 +20,23 @@ public class Inventory : MonoBehaviour
 
     void Start()
     {
-        testItem = Resources.Load<ItemData>("Items/WeaponTest");
-        if (testItem == null)
+        meleeItem = Resources.Load<ItemData>("Items/WeaponTest 1");
+        if (meleeItem == null)
             Debug.LogError("โหลดไม่เจอ!");
         else
-            Debug.Log("โหลดสำเร็จ: " + testItem.name);
+            Debug.Log("โหลดสำเร็จ: " + meleeItem.name);
+        rangedItem = Resources.Load<ItemData>("Items/WeaponTest");
+        if (rangedItem == null)
+            Debug.LogError("โหลดไม่เจอ!");
+        else
+            Debug.Log("โหลดสำเร็จ: " + rangedItem.name);
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.T))
         {
-            AddItem(testItem, 5);
+            AddItem(meleeItem, 5);
             Debug.Log("Added 5 items");
         }
     }

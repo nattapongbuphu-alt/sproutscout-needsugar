@@ -5,7 +5,8 @@ public class PlayerCombat : MonoBehaviour
     private Weapon currentWeapon;
     private Inventory inventory;
 
-    private ItemData testItem;
+    [SerializeField] private ItemData meleeItem;
+    [SerializeField] private ItemData rangedItem;
 
     void Awake()
     {
@@ -15,55 +16,48 @@ public class PlayerCombat : MonoBehaviour
 
     void Start()
     {
-        testItem = Resources.Load<ItemData>("Items/WeaponTest");
-        if (testItem == null)
+        meleeItem = Resources.Load<ItemData>("Items/WeaponTest 1");
+        if (meleeItem == null)
             Debug.LogError("โหลดไม่เจอ!");
         else
-            Debug.Log("โหลดสำเร็จ: " + testItem.name);
+            Debug.Log("โหลดสำเร็จ: " + meleeItem.name);
+        rangedItem = Resources.Load<ItemData>("Items/WeaponTest");
+        if (rangedItem == null)
+            Debug.LogError("โหลดไม่เจอ!");
+        else
+            Debug.Log("โหลดสำเร็จ: " + rangedItem.name);
     }
 
     void Update()
     {
-        // กด 1 เพื่อใส่อาวุธ
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            EquipFromInventory(testItem);
+            EquipFromInventory(meleeItem);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            EquipFromInventory(rangedItem);
         }
 
         if (currentWeapon == null) return;
 
-        // กดเมาส์ซ้ายเริ่มชาร์จ
         if (Input.GetMouseButtonDown(0))
-        {
             currentWeapon.StartUse();
-        }
 
-        // ปล่อยเมาส์ยิง
         if (Input.GetMouseButtonUp(0))
-        {
             currentWeapon.ReleaseUse();
-            
-        }
 
-        // อัปเดตการชาร์จทุกเฟรม
         currentWeapon.Tick();
     }
 
     public void EquipFromInventory(ItemData item)
     {
         if (item == null) return;
-        if (item.itemType != ItemType.Weapon) return;
-
-        // ลบของเก่า
         if (currentWeapon != null)
             Destroy(currentWeapon.gameObject);
 
-        // สร้างอาวุธใหม่
-        GameObject weaponObj = Instantiate(
-            item.weaponPrefab,
-            transform
-        );
-
+        GameObject weaponObj = Instantiate(item.weaponPrefab, transform);
         currentWeapon = weaponObj.GetComponent<Weapon>();
     }
 
