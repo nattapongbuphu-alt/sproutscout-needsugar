@@ -404,7 +404,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 642319771
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
@@ -453,6 +453,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2546091776921744997, guid: 503c0520403d5f84b998a3f683dd3b58, type: 3}
+      propertyPath: meleeItem
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3431224267671990667, guid: 503c0520403d5f84b998a3f683dd3b58, type: 3}
       propertyPath: maxSlots
       value: 1
@@ -543,7 +547,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8245807808841626268, guid: 503c0520403d5f84b998a3f683dd3b58, type: 3}
       propertyPath: m_SortingLayer
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8245807808841626268, guid: 503c0520403d5f84b998a3f683dd3b58, type: 3}
       propertyPath: m_SortingLayerID
