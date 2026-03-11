@@ -15,9 +15,9 @@ GameObject:
   - component: {fileID: 6740022598174068693}
   - component: {fileID: 2546091776921744997}
   - component: {fileID: 3431224267671990667}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -162,6 +162,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c308fad42f891a419216acfdcbd2b3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerCombat
+  meleeItem: {fileID: 0}
+  rangedItem: {fileID: 0}
 --- !u!114 &3431224267671990667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,7 +178,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Inventory
   maxSlots: 20
   slots: []
-  testItem: {fileID: 0}
+  meleeItem: {fileID: 0}
+  rangedItem: {fileID: 0}
 --- !u!1 &5500209376047950136
 GameObject:
   m_ObjectHideFlags: 0
@@ -186,7 +189,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2278475310432762600}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
