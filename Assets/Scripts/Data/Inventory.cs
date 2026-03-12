@@ -21,15 +21,7 @@ public class Inventory : MonoBehaviour
     void Start()
     {
         meleeItem = Resources.Load<ItemData>("Items/WeaponTest 1");
-        if (meleeItem == null)
-            Debug.LogError("โหลดไม่เจอ!");
-        else
-            Debug.Log("โหลดสำเร็จ: " + meleeItem.name);
         rangedItem = Resources.Load<ItemData>("Items/WeaponTest");
-        if (rangedItem == null)
-            Debug.LogError("โหลดไม่เจอ!");
-        else
-            Debug.Log("โหลดสำเร็จ: " + rangedItem.name);
     }
 
     void Update()
@@ -43,7 +35,7 @@ public class Inventory : MonoBehaviour
 
     public bool AddItem(ItemData item, int amount = 1)
     {
-        // หา slot ที่มี item เดิม
+        // ๏ฟฝ๏ฟฝ slot ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ item ๏ฟฝ๏ฟฝ๏ฟฝ
         foreach (var slot in slots)
         {
             if (slot.item == item)
@@ -53,7 +45,7 @@ public class Inventory : MonoBehaviour
             }
         }
 
-        // หา slot ว่าง
+        // ๏ฟฝ๏ฟฝ slot ๏ฟฝ๏ฟฝาง
         foreach (var slot in slots)
         {
             if (slot.item == null)
@@ -64,7 +56,7 @@ public class Inventory : MonoBehaviour
             }
         }
 
-        return false; // กระเป๋าเต็ม
+        return false; // ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ
     }
 
     public void RemoveItem(ItemData item, int amount = 1)

@@ -17,15 +17,7 @@ public class PlayerCombat : MonoBehaviour
     void Start()
     {
         meleeItem = Resources.Load<ItemData>("Items/WeaponTest 1");
-        if (meleeItem == null)
-            Debug.LogError("โหลดไม่เจอ!");
-        else
-            Debug.Log("โหลดสำเร็จ: " + meleeItem.name);
         rangedItem = Resources.Load<ItemData>("Items/WeaponTest");
-        if (rangedItem == null)
-            Debug.LogError("โหลดไม่เจอ!");
-        else
-            Debug.Log("โหลดสำเร็จ: " + rangedItem.name);
     }
 
     void Update()
@@ -67,7 +59,7 @@ public class PlayerCombat : MonoBehaviour
 
         currentWeapon.StartUse();
 
-        // ถ้าเป็นอาวุธแบบใช้แล้วหมด เช่น มะเขือเทศ
+       
         inventory.RemoveItem(item, 1);
     }
 

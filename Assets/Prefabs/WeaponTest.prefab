@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 5500234150503826865}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.42918, y: 0.09761, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -107,13 +107,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RangedWeapon
   tomatoPrefab: {fileID: 3538008323116198882, guid: e43cc4b9c2d2d744b9e1e464049e0613, type: 3}
+  tomatoPreviewPrefab: {fileID: 3538008323116198882, guid: e43cc4b9c2d2d744b9e1e464049e0613, type: 3}
   throwPoint: {fileID: 4946008780876827141}
   maxChargeTime: 2
-  minForce: 3
-  maxForce: 15
+  minDistance: 1
+  maxDistance: 3
   line: {fileID: -6704535842645774273}
-  linePoints: 10
-  timeBetweenPoints: 0.1
 --- !u!120 &-6704535842645774273
 LineRenderer:
   serializedVersion: 3
