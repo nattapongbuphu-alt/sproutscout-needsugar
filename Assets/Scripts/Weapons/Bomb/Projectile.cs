@@ -2,28 +2,34 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    [SerializeField] private float speed = 20f; // ความเร็วพุ่ง 
-    private Rigidbody2D rb;                   // ตัวควบคุมฟิสิกส์
-    private Vector2 startPos;                 // จุดเริ่มต้นที่ยิงออกไป
-    private float targetDistance;             // ระยะทางที่ต้องวิ่งไปให้ถึง
-    private bool isMoving = false;            // สถานะว่ากำลังเคลื่อนที่อยู่หรือไม่
+    [SerializeField] private float speed = 20f;
+    [SerializeField] private int damage = 10;     // เพิ่ม: พลังโจมตี
+    [SerializeField] private float lifeTime = 3f; // เพิ่ม: เวลาก่อนทำลายตัวเองถ้าไม่โดนอะไรเลย
+
+    private Rigidbody2D rb;
+    private Vector2 startPos;
+    private float targetDistance;
+    private bool isMoving = false;
 
     void Awake()
     {
-        // เมื่อเริ่มสร้างมะเขือเทศ ให้ไปดึงคอมโพเนนต์ Rigidbody 2D มาเก็บไว้
         rb = GetComponent<Rigidbody2D>();
     }
 
-    // ฟังก์ชันนี้เหมือน "ใบสั่งงาน" ที่ RangedWeapon ส่งมาให้
+    void Start()
+    {
+        // เริ่มนับถอยหลังทำลายตัวเองทันทีที่เกิดมา (กรณีไม่ชนอะไรเลย)
+        Invoke("DestroyObject", lifeTime);
+    }
+
     public void Launch(Vector2 direction, float distance)
     {
-        startPos = transform.position; // บันทึกว่าเริ่มพุ่งจากจุดไหน
-        targetDistance = distance;     // บันทึกว่าต้องพุ่งไปไกลแค่ไหน
-        isMoving = true;               // เปลี่ยนสถานะเป็นกำลังเคลื่อนที่
+        startPos = transform.position;
+        targetDistance = distance;
+        isMoving = true;
 
         if (rb != null)
         {
-            // สั่งให้ Rigidbody พุ่งไปในทิศทาง (direction) ด้วยความเร็ว (speed)
             rb.linearVelocity = direction * speed;
         }
     }
@@ -32,27 +38,42 @@ public class Projectile : MonoBehaviour
     {
         if (isMoving)
         {
-            // ทุกๆ เฟรม จะคอยวัดว่า "จากจุดเริ่ม วิ่งมาไกลแค่ไหนแล้ว?"
             float traveled = Vector2.Distance(startPos, transform.position);
-            
-            // ถ้าวิ่งมาจน "มากกว่าหรือเท่ากับ" ระยะที่เงาบอกไว้
             if (traveled >= targetDistance)
             {
-                StopObject(); // สั่งให้หยุดทันที!
+                StopObject();
             }
+        }
+    }
+
+    // ฟังก์ชันตรวจจับการชน
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        // เช็คว่าสิ่งที่ชนคือศัตรูหรือไม่ (ตรวจสอบผ่าน Component IDamageable หรือ Tag)
+        IDamageable enemy = collision.GetComponent<IDamageable>();
+
+        if (enemy != null)
+        {
+            // ทำดาเมจใส่ศัตรู
+            enemy.TakeDamage(damage);
+            
+            // เมื่อโดนศัตรูแล้ว ให้ทำลายตัวเองทันที
+            CancelInvoke("DestroyObject"); // ยกเลิกการลบตามเวลาเดิม
+            DestroyObject();
         }
     }
 
     private void StopObject()
     {
-        isMoving = false;     // เลิกเช็กระยะทาง
+        isMoving = false;
         if (rb != null)
         {
-            rb.linearVelocity = Vector2.zero;        // เซตความเร็วเป็น 0 (หยุดกึก)
-            rb.bodyType = RigidbodyType2D.Kinematic; // เปลี่ยนเป็น Kinematic เพื่อไม่ให้ใครมาชนแล้วขยับได้
+            rb.linearVelocity = Vector2.zero;
+            rb.bodyType = RigidbodyType2D.Kinematic;
         }
-
-        Invoke("DestroyObject", 2f);
+        
+        // ถ้าถึงระยะเป้าหมายแล้วยังไม่ชนใคร ให้รออีกนิดค่อยหายไป (หรือจะให้หายทันทีก็ได้)
+        Invoke("DestroyObject", 1f); 
     }
 
     private void DestroyObject()

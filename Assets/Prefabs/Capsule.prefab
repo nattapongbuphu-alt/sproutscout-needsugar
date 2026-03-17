@@ -105,12 +105,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc73b4e55a4917c4ebc1811a29705ad8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MeleeWeapon
-  attackRate: 1
+  attackCooldown: 0.5
   range: 1.5
   damage: 10
   enemyLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 8
+  dashForce: 20
+  dashDuration: 0.1
 --- !u!70 &-2602010559596375037
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

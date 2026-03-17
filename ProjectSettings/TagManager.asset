@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - Ground
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -48,8 +49,13 @@ TagManager:
   - name: Ground
     uniqueID: 2270487813
     locked: 0
+<<<<<<< Updated upstream
   - name: Prop
     uniqueID: 3000823373
+=======
+  - name: Enemy
+    uniqueID: 1064712153
+>>>>>>> Stashed changes
     locked: 0
   - name: Player
     uniqueID: 642319771

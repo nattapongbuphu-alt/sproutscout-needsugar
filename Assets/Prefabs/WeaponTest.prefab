@@ -81,7 +81,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 642319771
-  m_SortingLayer: 2
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
@@ -107,7 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RangedWeapon
   tomatoPrefab: {fileID: 3538008323116198882, guid: e43cc4b9c2d2d744b9e1e464049e0613, type: 3}
-  tomatoPreviewPrefab: {fileID: 3538008323116198882, guid: e43cc4b9c2d2d744b9e1e464049e0613, type: 3}
+  tomatoPreviewPrefab: {fileID: 5500234150503826865}
   throwPoint: {fileID: 4946008780876827141}
   maxChargeTime: 2
   minDistance: 1
