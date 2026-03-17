@@ -15,7 +15,7 @@ TagManager:
   - Enemy
   - Wall
   - Ground
-  - 
+  - Prop
   - 
   - 
   - 
@@ -47,6 +47,9 @@ TagManager:
     locked: 0
   - name: Ground
     uniqueID: 2270487813
+    locked: 0
+  - name: Prop
+    uniqueID: 3000823373
     locked: 0
   - name: Player
     uniqueID: 642319771
