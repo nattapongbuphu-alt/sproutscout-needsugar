@@ -2,63 +2,79 @@
 
 public class MonsterAI : MonoBehaviour
 {
-    [Header("Settings")]
-    public float moveSpeed = 3f;      // ความเร็วในการเดินไล่
-    public float detectionRange = 5f; // ระยะที่ Monster จะเริ่มมองเห็นเรา
+    [Header("Movement Settings")]
+    public float moveSpeed = 3f;
+    public float detectionRange = 10f;
+    public float attackRange = 1.5f; 
 
     private Transform player;
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
+    private Animator anim;
+    private bool isAttacking = false;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>(); 
 
-        // ค้นหา Object ที่มี Tag ว่า Player
         GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
-        if (playerObj != null)
-        {
-            player = playerObj.transform;
-        }
+        if (playerObj != null) player = playerObj.transform;
     }
 
     void Update()
     {
-        if (player == null) return;
+        if (player == null || isAttacking) return;
 
-        // คำนวณระยะห่างระหว่าง Monster กับ Player
         float distanceToPlayer = Vector2.Distance(transform.position, player.position);
 
-        if (distanceToPlayer < detectionRange)
+        if (distanceToPlayer <= attackRange)
         {
-            // ถ้าอยู่ในระยะ ให้เดินไล่
+            
+            StartAttack();
+        }
+        else if (distanceToPlayer < detectionRange)
+        {
+            
             MoveTowardsPlayer();
         }
         else
         {
-            // ถ้าอยู่นอกระยะ ให้หยุดนิ่ง
-            rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
+            
+            StopMoving();
         }
     }
 
     void MoveTowardsPlayer()
     {
-        // คำนวณทิศทาง (ซ้าย หรือ ขวา)
         float direction = (player.position.x > transform.position.x) ? 1 : -1;
-
-        // สั่งเคลื่อนที่
         rb.linearVelocity = new Vector2(direction * moveSpeed, rb.linearVelocity.y);
 
-        // กลับด้านรูปภาพตามทิศทางที่เดิน
-        if (direction > 0) spriteRenderer.flipX = true; // หันขวา
-        else spriteRenderer.flipX = false;             // หันซ้าย
+        
+        anim.SetFloat("speed", Mathf.Abs(direction));
+
+        if (direction > 0) spriteRenderer.flipX = true;
+        else spriteRenderer.flipX = false;
     }
 
-    // วาดวงกลมในหน้า Scene เพื่อดูระยะตรวจจับ
-    void OnDrawGizmosSelected()
+    void StopMoving()
     {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, detectionRange);
+        rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
+        anim.SetFloat("speed", 0); //  Idle
+    }
+
+    void StartAttack()
+    {
+        isAttacking = true;
+        rb.linearVelocity = Vector2.zero;
+        anim.SetFloat("speed", 0);
+        anim.SetTrigger("attack"); 
+    }
+
+    
+    public void FinishAttack()
+    {
+        isAttacking = false;
     }
 }
