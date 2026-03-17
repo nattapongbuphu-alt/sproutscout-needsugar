@@ -34,7 +34,7 @@ public class MeleeWeapon : Weapon
             if (target != null)
             {
                 target.TakeDamage(damage);
-                break; // µÕµÑÇáÃ¡¾Í
+                break; 
             }
         }
     }

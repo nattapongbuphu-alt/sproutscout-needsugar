@@ -10,11 +10,14 @@ public class PlayerController : Character
         base.Awake();
 
         movement = GetComponent<PlayerMovement>();
+       
     }
 
     void Update()
     {
         movement.HandleInput();
+        movement.Animate();    
     }
+        
 }
 
