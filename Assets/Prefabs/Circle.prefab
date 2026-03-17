@@ -233,5 +233,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TomatoProjectile
   speed: 5
-  damage: 10
+  damage: 20
   lifeTime: 3

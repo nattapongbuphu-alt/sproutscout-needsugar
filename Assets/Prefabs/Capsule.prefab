@@ -27,13 +27,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8077317284799078063}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
-  m_ConstrainProportionsScale: 1
+  m_LocalRotation: {x: 0.0011065437, y: 0.0011148527, z: -0.7097459, w: 0.70445615}
+  m_LocalPosition: {x: 0.0679, y: -0.0692, z: 0.3601}
+  m_LocalScale: {x: -0.03, y: 0.12, z: 0.28}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0.18, y: 0, z: -90.429}
 --- !u!212 &1067348951848496231
 SpriteRenderer:
   serializedVersion: 2
@@ -79,8 +79,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1896611335
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
@@ -106,13 +106,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MeleeWeapon
   attackCooldown: 0.5
-  range: 1.5
   damage: 10
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 8
-  dashForce: 20
+  dashForce: 1000
   dashDuration: 0.1
+  playerRb: {fileID: 2718847060029229345, guid: 503c0520403d5f84b998a3f683dd3b58, type: 3}
+  isDashing: 0
 --- !u!70 &-2602010559596375037
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

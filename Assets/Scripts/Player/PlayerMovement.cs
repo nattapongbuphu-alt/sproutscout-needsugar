@@ -1,5 +1,5 @@
 using UnityEngine;
-using TMPro; // ต้องเพิ่มตัวนี้เพื่อใช้งาน TextMeshPro
+using TMPro; // ๏ฟฝ๏ฟฝอง๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝวน๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝาน TextMeshPro
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour
@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Health Settings")]
     public int maxHealth = 100;
     public int currentHealth;
-    public TextMeshProUGUI healthText; // ลาก Text ตัวเลขมาใส่ช่องนี้
+    public TextMeshProUGUI healthText; // ๏ฟฝาก Text ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝลข๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝอง๏ฟฝ๏ฟฝ๏ฟฝ
 
     [Header("Components")]
     public Animator animator;
@@ -31,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
         UpdateHealthUI();
     }
 
-    // ฟังก์ชันแยกสำหรับอัปเดตตัวเลขบนหน้าจอ
+    // ๏ฟฝัง๏ฟฝ๏ฟฝัน๏ฟฝยก๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝับ๏ฟฝัปเดต๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝลข๏ฟฝ๏ฟฝหน๏ฟฝาจ๏ฟฝ
     void UpdateHealthUI()
     {
         if (healthText != null)
@@ -71,7 +71,7 @@ public class PlayerMovement : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
-        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth); // ป้องกันเลือดติดลบ
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth); // ๏ฟฝ๏ฟฝอง๏ฟฝัน๏ฟฝ๏ฟฝ๏ฟฝอด๏ฟฝิดลบ
 
         UpdateHealthUI();
 
@@ -83,7 +83,13 @@ public class PlayerMovement : MonoBehaviour
 
     void Die()
     {
-        Debug.Log("Player ตายแล้ว!");
-        // ใส่คำสั่งเปลี่ยน Scene ไปหน้า Ending หรือ Game Over ที่นี่
+        Debug.Log("Player ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ!");
+        // ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝยน Scene ๏ฟฝหน๏ฟฝ๏ฟฝ Ending ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ Game Over ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ
     }
+
+   public void StopVelocity()
+{
+    // เธชเธฑเนเธเนเธซเนเธเธงเธฒเธกเน€เธฃเนเธงเน€เธเนเธ 0 เธ—เธฑเธเธ—เธต เน€เธเธทเนเธญเนเธซเนเนเธฃเธ Dash เธ—เธณเธเธฒเธเนเธ”เนเน€เธ•เนเธกเธ—เธตเน
+    rb.linearVelocity = Vector2.zero;
+}
 }
