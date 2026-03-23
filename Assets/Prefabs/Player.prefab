@@ -20,7 +20,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &14835071610585012
 Transform:
   m_ObjectHideFlags: 0
@@ -77,9 +77,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   moveSpeed: 5
-  maxHealth: 100
-  currentHealth: 0
-  healthText: {fileID: 0}
   animator: {fileID: 3542013759674153090}
   sr: {fileID: 1504648980364408591}
 --- !u!114 &7148975314124599085
@@ -98,6 +95,7 @@ MonoBehaviour:
   characterSprite: {fileID: 1504648980364408591}
   flashColor: {r: 1, g: 0, b: 0, a: 1}
   flashDuration: 0.15
+  healthText: {fileID: 0}
 --- !u!114 &6131005506748375299
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -207,7 +205,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 642319771
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: -2311659948842064771, guid: 2949ba0baafd6b94ca1764e367356da4, type: 3}

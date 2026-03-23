@@ -3,6 +3,8 @@ using System.Collections;
 
 public class Character : MonoBehaviour, IDamageable
 {
+    public System.Action OnDeath;
+
     [Header("Stat Settings")]
     public int maxHP = 100;
     protected int currentHP;
@@ -63,7 +65,10 @@ public class Character : MonoBehaviour, IDamageable
     protected virtual void Die()
     {
         Debug.Log($"{gameObject.name} ตายแล้ว");
-        // ใส่ Logic อื่นๆ เช่น เล่น Animation ตาย หรือลบ Object
+       
         gameObject.SetActive(false);
+
+        OnDeath?.Invoke();
+
     }
 }

@@ -1,37 +1,67 @@
 using UnityEngine;
+using TMPro;
 
-[RequireComponent(typeof(PlayerMovement))]
-public class PlayerController : Character
+public class PlayerController : Character // สืบทอดจาก Character ที่คุณเขียนมา
 {
+    [Header("Player Specific Components")]
+    [SerializeField] private TextMeshProUGUI healthText;
     private PlayerMovement movement;
-    private MeleeWeapon meleeWeapon; // อ้างอิงถึงอาวุธ
+    private MeleeWeapon meleeWeapon;
 
     protected override void Awake()
     {
+        // เรียก Awake ของ Character เพื่อเซตเลือดและเก็บสี Sprite ดั้งเดิม
         base.Awake();
+
         movement = GetComponent<PlayerMovement>();
-        
-        // หา MeleeWeapon ที่อยู่ในลูกของ Player
         meleeWeapon = GetComponentInChildren<MeleeWeapon>();
     }
 
-    // ตัวอย่างใน PlayerMovement หรือ PlayerController
-  void Update()
-{
-    // เช็คว่าอาวุธกำลังพุ่งอยู่หรือไม่
-    bool isDashing = (meleeWeapon != null && meleeWeapon.IsDashing);
-
-    if (isDashing)
+    private void Start()
     {
-        // ถ้าพุ่งอยู่ "ห้าม" รับ Input เดิน และสั่งหยุดความเร็วเดินเดิม
-        movement.StopVelocity(); 
-        return; // จบการทำงานของ Update เฟรมนี้ตรงนี้เลย (ไม่ไปทำ HandleInput)
+        UpdateHealthUI();
+        Debug.Log(currentHP);
     }
 
-    // ถ้าไม่ได้พุ่ง ถึงจะเดินได้ปกติ
-    movement.HandleInput();
-    movement.Animate();    
-}
+    private void Update()
+    {
+        // ตรวจสอบสถานะจากอาวุธ (ถ้ามี)
+        bool isDashing = (meleeWeapon != null && meleeWeapon.IsDashing);
 
-  
+        if (isDashing)
+        {
+            movement.StopVelocity();
+            return;
+        }
+
+        movement.HandleInput();
+        movement.Animate();
+    }
+
+    // Override ฟังก์ชัน TakeDamage เพื่อเพิ่มการอัปเดต UI ของผู้เล่น
+    public override void TakeDamage(int damage)
+    {
+        // เรียก Logic เดิมของ Character (ลดเลือด + กะพริบสี)
+        base.TakeDamage(damage);
+
+        // เพิ่ม Logic เฉพาะของ Player คือการโชว์เลือดบนจอ
+        UpdateHealthUI();
+    }
+
+    private void UpdateHealthUI()
+    {
+        if (healthText != null)
+        {
+            healthText.text = $"HP: {currentHP} / {maxHP}";
+        }
+    }
+
+    protected override void Die()
+    {
+        // ถ้าอยากให้ Player ตายแล้วมี Logic พิเศษ (เช่นเด้งหน้า Game Over) ให้ใส่ที่นี่
+        Debug.Log("Player Game Over!");
+
+        // แต่ยังคงเรียกใช้การปิด Object จาก Base Class อยู่
+        base.Die();
+    }
 }
