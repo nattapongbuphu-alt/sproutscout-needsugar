@@ -60,7 +60,7 @@ public class PlayerCombat : MonoBehaviour
         currentWeapon.StartUse();
 
        
-        inventory.RemoveItem(item, 1);
+        //inventory.RemoveItem(item, 1);
     }
 
 
