@@ -103,6 +103,7 @@ GameObject:
   - component: {fileID: 7410022963829708057}
   - component: {fileID: 6825318482431810844}
   - component: {fileID: 2547471703846424363}
+  - component: {fileID: 1862725514527077137}
   m_Layer: 6
   m_Name: Enemy
   m_TagString: Enemy
@@ -170,11 +171,6 @@ MonoBehaviour:
   flashColor: {r: 1, g: 0, b: 0, a: 1}
   flashDuration: 0.15
   target: {fileID: 14835071610585012, guid: 503c0520403d5f84b998a3f683dd3b58, type: 3}
-  moveSpeed: 1
-  data: {fileID: 11400000, guid: 6eb88f750c4704247850a40e6cb601f0, type: 2}
-  attackPoint: {fileID: 4848926389985631742}
-  indicator: {fileID: 5272359148622377644}
-  enemySprite: {fileID: 8880707404165361962}
 --- !u!58 &2547471703846424363
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -211,6 +207,20 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0.01671344, y: 0.02}
   m_Radius: 0.25671345
+--- !u!114 &1862725514527077137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4734795699625120975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02591b447dc6b124ba3a123a71687214, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyMovement
+  moveSpeed: 1
+  enemySprite: {fileID: 8880707404165361962}
 --- !u!1 &6873811437280115006
 GameObject:
   m_ObjectHideFlags: 0
