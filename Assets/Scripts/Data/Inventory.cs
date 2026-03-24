@@ -1,3 +1,4 @@
+using System; // เพิ่มตัวนี้
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,75 +7,36 @@ public class Inventory : MonoBehaviour
     public int maxSlots = 20;
     public List<InventorySlot> slots = new List<InventorySlot>();
 
+    // Event สำหรับแจ้งเตือน UI เมื่อมีการเปลี่ยนแปลงไอเทม
+    public Action onInventoryChanged;
 
     [SerializeField] private ItemData meleeItem;
-    [SerializeField] private ItemData rangedItem;
-
-    void Awake()
-    {
-        for (int i = 0; i < maxSlots; i++)
-        {
-            slots.Add(new InventorySlot());
-        }
-    }
-
-    void Start()
-    {
-        meleeItem = Resources.Load<ItemData>("Items/WeaponTest 1");
-        rangedItem = Resources.Load<ItemData>("Items/WeaponTest");
-    }
-
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            AddItem(meleeItem, 5);
-            Debug.Log("Added 5 items");
-        }
-    }
+    // ... (โค้ดเดิมของคุณใน Awake และ Start) ...
 
     public bool AddItem(ItemData item, int amount = 1)
     {
-        // �� slot ����� item ���
         foreach (var slot in slots)
         {
             if (slot.item == item)
             {
                 slot.amount += amount;
+                onInventoryChanged?.Invoke(); // แจ้ง UI
                 return true;
             }
         }
 
-        // �� slot ��ҧ
         foreach (var slot in slots)
         {
             if (slot.item == null)
             {
                 slot.item = item;
                 slot.amount = amount;
+                onInventoryChanged?.Invoke(); // แจ้ง UI
                 return true;
             }
         }
-
-        return false; // ���������
+        return false;
     }
 
-    public void RemoveItem(ItemData item, int amount = 1)
-    {
-        foreach (var slot in slots)
-        {
-            if (slot.item == item)
-            {
-                slot.amount -= amount;
-
-                if (slot.amount <= 0)
-                {
-                    slot.item = null;
-                    slot.amount = 0;
-                }
-
-                return;
-            }
-        }
-    }
+    // อย่าลืมใส่ onInventoryChanged?.Invoke(); ใน RemoveItem ด้วยนะครับ
 }
