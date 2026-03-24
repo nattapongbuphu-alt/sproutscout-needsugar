@@ -8,8 +8,12 @@ public class PlayerController : Character // สืบทอดจาก Charact
     private PlayerMovement movement;
     private MeleeWeapon meleeWeapon;
 
+    public static PlayerController instance;
+
     protected override void Awake()
     {
+        instance = this;
+
         // เรียก Awake ของ Character เพื่อเซตเลือดและเก็บสี Sprite ดั้งเดิม
         base.Awake();
 

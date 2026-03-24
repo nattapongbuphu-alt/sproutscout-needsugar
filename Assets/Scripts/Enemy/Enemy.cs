@@ -1,28 +1,35 @@
-using static UnityEngine.GraphicsBuffer;
+using UnityEngine;
 
-public class Enemy : Character
+[RequireComponent(typeof(EnemyMovement))]
+public class Enemy : Character 
 {
+    [Header("Target Settings")]
+    public Transform target; // ลาก Player มาใส่ที่นี่
+    
     private EnemyMovement movement;
-    private EnemyAttack attack;
 
     protected override void Awake()
     {
-        base.Awake();
-        movement = GetComponent<EnemyMovement>();
-        attack = GetComponent<EnemyAttack>();
+      base.Awake();
+    movement = GetComponent<EnemyMovement>();
+
+    // ถ้า Target ว่างอยู่ ให้พยายามหา Object ที่มี Tag ว่า "Player" ในฉากอัตโนมัติ
+    if (target == null)
+    {
+        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+        if (playerObj != null)
+        {
+            target = playerObj.transform;
+        }
+    }
     }
 
-    void Update()
-    {
-        //// สั่งให้เดินถ้าไม่อยู่ในระยะโจมตี
-        //if (!attack.IsInRange(target))
-        //{
-        //    movement.MoveTowards(target);
-        //}
-        //else
-        //{
-        //    movement.Stop();
-        //    attack.TryAttack(target);
-        //}
-    }
+   void Update()
+{
+   if (PlayerController.instance != null && PlayerController.instance.gameObject.activeInHierarchy)
+   {
+    movement.MoveTowards(PlayerController.instance.transform.position);
+   }
+   
+}
 }
