@@ -15,9 +15,9 @@ TagManager:
   - UI
   - Enemy
   - Wall
+  - Farm
   - Ground
   - Prop
-  - 
   - 
   - 
   - 
@@ -48,6 +48,9 @@ TagManager:
     locked: 0
   - name: Ground
     uniqueID: 2270487813
+    locked: 0
+  - name: Farm
+    uniqueID: 3464284787
     locked: 0
   - name: Prop
     uniqueID: 3000823373
