@@ -8,6 +8,8 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] private ItemData meleeItem;
     [SerializeField] private ItemData rangedItem;
 
+    public Transform spawnPoint;
+
     void Awake()
     {
         inventory = GetComponent<Inventory>();
@@ -49,7 +51,7 @@ public class PlayerCombat : MonoBehaviour
         if (currentWeapon != null)
             Destroy(currentWeapon.gameObject);
 
-        GameObject weaponObj = Instantiate(item.weaponPrefab, transform);
+        GameObject weaponObj = Instantiate(item.weaponPrefab, spawnPoint);
         currentWeapon = weaponObj.GetComponent<Weapon>();
     }
 

@@ -3,6 +3,7 @@ using UnityEngine;
 [RequireComponent(typeof(EnemyMovement))]
 public class Enemy : Character 
 {
+    public enum State { Idle, Chasing, Attacking }
     [Header("Target Settings")]
     public Transform target; // ลาก Player มาใส่ที่นี่
     
