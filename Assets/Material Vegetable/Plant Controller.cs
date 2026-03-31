@@ -3,46 +3,89 @@
 public class PlantController : MonoBehaviour
 {
     [Header("Settings")]
-    public float timePerStage = 5f; // time duration
+    public ItemData cabbageItemData; // ไฟล์ ItemData (ผัก) ที่ลากใส่
+    public float timePerStage = 3f;
+    public float interactDistance = 10f;
 
     [Header("Visual Models")]
-    public GameObject seedModel;     // fade 1
-    public GameObject seedlingModel; // fade 2
-    public GameObject matureModel;   // fade 3
+    public GameObject seedModel;
+    public GameObject seedlingModel;
+    public GameObject matureModel;
 
-    private int currentStage = 1;
-    private float timer = 0;
-    private bool isFullyGrown = false;
+    private int currentStage = 0; // 0=Seed, 1=Seedling, 2=Mature
+    private float timer;
+    private Transform player;
 
     void Start()
     {
-        UpdateVisuals(); // show seed
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+        UpdateVisuals();
     }
 
     void Update()
     {
-        if (isFullyGrown) return;
-
-        timer += Time.deltaTime;
-        if (timer >= timePerStage)
+        // 1. ระบบเติบโต
+        if (currentStage < 2)
         {
-            Grow();
+            timer += Time.deltaTime;
+            if (timer >= timePerStage)
+            {
+                currentStage++;
+                timer = 0;
+                UpdateVisuals();
+            }
         }
-    }
 
-    void Grow()
-    {
-        currentStage++;
-        timer = 0;
-        UpdateVisuals();
-
-        if (currentStage >= 3) isFullyGrown = true;
+        // 2. ระบบกดเก็บผัก (กด E)
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            CheckInteraction();
+        }
     }
 
     void UpdateVisuals()
     {
-        if (seedModel) seedModel.SetActive(currentStage == 1);
-        if (seedlingModel) seedlingModel.SetActive(currentStage == 2);
-        if (matureModel) matureModel.SetActive(currentStage == 3);
+        seedModel.SetActive(currentStage == 0);
+        seedlingModel.SetActive(currentStage == 1);
+        matureModel.SetActive(currentStage == 2);
+    }
+
+    void CheckInteraction()
+    {
+        float distance = Vector3.Distance(transform.position, player.position);
+
+        if (distance <= interactDistance)
+        {
+            if (currentStage == 2) // ต้องโตเต็มที่ (Mature) ถึงจะเก็บได้
+            {
+                CollectPlant();
+            }
+            else
+            {
+                Debug.Log("ผักยังไม่โตเต็มที่! รออีกสักพัก");
+            }
+        }
+    }
+
+    void CollectPlant()
+    {
+        if (cabbageItemData != null)
+        {
+            // 1. หาตัว Inventory ในฉาก (สมมติชื่อสคริปต์ว่า InventoryManager)
+            InventoryManager inventory = FindFirstObjectByType<InventoryManager>();
+
+            if (inventory != null)
+            {
+                // 2. ส่งไฟล์ ItemData เข้าไปในฟังก์ชันเพิ่มของ (เช่น AddItem)
+                inventory.AddItem(cabbageItemData);
+
+                Debug.Log("ส่ง " + cabbageItemData.itemName + " เข้า Inventory แล้ว!");
+                Destroy(gameObject); // ทำลายผักทิ้งหลังจากส่งข้อมูลเสร็จ
+            }
+            else
+            {
+                Debug.LogError("หา InventoryManager ไม่เจอในฉาก!");
+            }
+        }
     }
 }
