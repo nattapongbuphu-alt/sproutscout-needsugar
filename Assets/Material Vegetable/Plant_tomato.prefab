@@ -320,7 +320,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3daf5d85a448fb4eaa5250576ca2913, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlantSpawnerUI
+  cabbageItemData: {fileID: 11400000, guid: 8a0d1ebcacd182543a5e11d07c5051af, type: 2}
   timePerStage: 3
+  interactDistance: 2
   seedModel: {fileID: 5293613201022219265}
   seedlingModel: {fileID: 1781989158891341872}
   matureModel: {fileID: 5700113767729430674}
