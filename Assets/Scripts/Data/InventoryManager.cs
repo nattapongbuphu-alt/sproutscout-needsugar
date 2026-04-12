@@ -1,30 +1,65 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI; // ต้องมีอันนี้เพื่อจัดการรูปภาพ
+using UnityEngine.UI; // ๏ฟฝ๏ฟฝอง๏ฟฝ๏ฟฝ๏ฟฝัน๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝอจัด๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝูป๏ฟฝาพ
 
 public class InventoryManager : MonoBehaviour
 {
     public List<ItemData> items = new List<ItemData>();
-    public Image[] uiSlots; // ลากช่อง Image ในกระเป๋ามาใส่ในนี้ให้ครบ
+    public Image[] uiSlots; // ๏ฟฝาก๏ฟฝ๏ฟฝอง Image ในก๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝในน๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝรบ
 
     public void AddItem(ItemData data)
     {
         items.Add(data);
-        Debug.Log("เพิ่มของแล้ว!");
+        Debug.Log("๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝอง๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ!");
 
-        RefreshUI(); // ทุกครั้งที่เพิ่มของ ให้สั่งวาดรูปใหม่
+        RefreshUI(); // ๏ฟฝุก๏ฟฝ๏ฟฝ๏ฟฝ้งท๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝอง ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝาด๏ฟฝูป๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ
     }
 
     void RefreshUI()
     {
-        // วนลูปเช็คตามจำนวนของที่มีใน List
+        // วน๏ฟฝูป๏ฟฝ็คต๏ฟฝ๏ฟฝ๏ฟฝำนวน๏ฟฝอง๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ List
         for (int i = 0; i < items.Count; i++)
         {
-            if (i < uiSlots.Length) // ป้องกันของเกินจำนวนช่องที่มี
+            if (i < uiSlots.Length) // ๏ฟฝ๏ฟฝอง๏ฟฝัน๏ฟฝอง๏ฟฝิน๏ฟฝำนวน๏ฟฝ๏ฟฝอง๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ
             {
-                uiSlots[i].sprite = items[i].icon; // เอารูปจาก ItemData มาใส่ใน UI
-                uiSlots[i].enabled = true; // เปิดการแสดงผลรูป
+                uiSlots[i].sprite = items[i].icon; // ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝูป๏ฟฝาก ItemData ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ UI
+                uiSlots[i].enabled = true; // ๏ฟฝิด๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝสด๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝูป
             }
         }
     }
+    public void DropItem (int slotIndex)
+    {
+        if (slotIndex < items.count)
+        {
+            itemDate dataTodrop = items[slotIndex];
+            vector3 spawnPosition = transfrom.Position + transform.forward *2f;
+            if (dataTodrop.weaponPrefap ! = null)
+            {
+                Instantiate(dataTodrop.weaponPrefap,spawnPosition,Quaternion.Identity);
+                Debug.Log("เธงเธฒเธ"+ dataTodrop.itemsname + "เธฅเธเธเธเธเธทเนเธเนเธฅเนเธง");
+                //4 delete items on the list form inventory and Update UI
+
+                items.RemoveAt (slotIndex);
+                RefreshUI();
+            }
+        }
+    }
+    void RefreshUI ()
+    {
+        for (int i = 0; i < uiSlots.Length; i++)
+        {
+            if (i < items.count)
+            {
+                uiSlots[i].sprite = items[i].icon;
+                uiSlots[i].enabled = true ; // = show item on inventory
+            }
+            else
+            {
+                uiSlots[i].sprite = null;
+                uiSlots[i].enabled = false ; //but don't have item close photo in inventory or destroy photo
+                 
+            }
+        }
+    }
+
 }
