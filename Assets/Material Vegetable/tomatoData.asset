@@ -10,9 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f0b9e4dca3b15794280757eb21a071c4, type: 3}
-  m_Name: New Item Data tomato bean
+  m_Name: tomatoData
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemName: CabbageData
   icon: {fileID: 6937817954938267909, guid: ba94c5b7201c0824f83bb073b80b50ba, type: 3}
   itemType: 0
-  weaponPrefab: {fileID: 7681974336939718849, guid: af60b3898565e9d4a9cb91489e8483cc, type: 3}
+  monsterPrefab: {fileID: 4318914583180886170, guid: 254f51f733b5d924898c953d898e098e, type: 3}
+  healthRestore: 0
+  weaponPrefab: {fileID: 4318914583180886170, guid: 254f51f733b5d924898c953d898e098e, type: 3}

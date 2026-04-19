@@ -78,7 +78,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 642319771
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: -855298285791758126, guid: d911b8544bd049e4d9fae517984f3377, type: 3}
@@ -169,7 +169,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 642319771
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 8781319613115172126, guid: 3ab8582dad0390b4282a305329195ed3, type: 3}
@@ -260,7 +260,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 642319771
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 6937817954938267909, guid: ba94c5b7201c0824f83bb073b80b50ba, type: 3}
@@ -283,6 +283,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4138523978605909438}
   - component: {fileID: 3484587219583599035}
+  - component: {fileID: -1954719230393389345}
   m_Layer: 0
   m_Name: Plant_tomato
   m_TagString: Untagged
@@ -326,3 +327,16 @@ MonoBehaviour:
   seedModel: {fileID: 5293613201022219265}
   seedlingModel: {fileID: 1781989158891341872}
   matureModel: {fileID: 5700113767729430674}
+--- !u!114 &-1954719230393389345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7681974336939718849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3341dd4e11c48943912c3d1deebdb8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PickupItem
+  itemData: {fileID: 11400000, guid: 8a0d1ebcacd182543a5e11d07c5051af, type: 2}
