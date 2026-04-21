@@ -4,7 +4,7 @@ public class PickupItem : MonoBehaviour
 {
     public ItemData itemData; // ใส่ข้อมูลไอเทม (ScriptableObject) ตรงนี้ใน Inspector
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         // ตรวจสอบว่าเป็นผู้เล่นหรือไม่ (ใช้ Tag "Player")
         if (other.CompareTag("Player"))

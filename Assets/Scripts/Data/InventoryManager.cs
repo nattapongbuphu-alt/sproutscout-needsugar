@@ -61,6 +61,12 @@ public class InventoryManager : MonoBehaviour
 
     public void AddItem(ItemData data)
     {
+        if (data == null)
+        {
+            Debug.LogWarning("พยายามเพิ่มไอเทมที่เป็น null!");
+            return;
+        }
+
         if (items.Count < uiSlots.Length)
         {
             items.Add(data);
@@ -78,6 +84,8 @@ public class InventoryManager : MonoBehaviour
         if (slotIndex >= items.Count) return;
 
         ItemData data = items[slotIndex];
+        if (data == null) return;
+
         Debug.Log("เลือกใช้: " + data.itemName);
 
         if (data.itemType == ItemType.Monster)
@@ -116,27 +124,23 @@ public class InventoryManager : MonoBehaviour
 
     private void PlaceMonsterAtMouse()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mousePos.z = 0; // ตรวจสอบให้แน่ใจว่ามอนสเตอร์อยู่ในระนาบ 2D
 
-        if (Physics.Raycast(ray, out hit))
+        // เสกมอนสเตอร์ที่จุดที่เมาส์ชี้
+        if (pendingMonster != null && pendingMonster.monsterPrefab != null)
         {
-            // เสกมอนสเตอร์ที่จุดที่เมาส์ชี้
-            Instantiate(pendingMonster.monsterPrefab, hit.point, Quaternion.identity);
+            Instantiate(pendingMonster.monsterPrefab, mousePos, Quaternion.identity);
             Debug.Log("เสก " + pendingMonster.itemName + " สำเร็จ!");
 
             // ลบออกจากกระเป๋า
             items.RemoveAt(pendingSlotIndex);
             RefreshUI();
+        }
 
-            // ออกจากโหมดวาง
-            isPlacing = false;
-            pendingMonster = null;
-        }
-        else
-        {
-            Debug.LogWarning("คลิกไม่โดนพื้นที่มี Collider!");
-        }
+        // ออกจากโหมดวาง
+        isPlacing = false;
+        pendingMonster = null;
     }
 
     private void CancelPlacing()
@@ -151,7 +155,9 @@ public class InventoryManager : MonoBehaviour
     {
         for (int i = 0; i < uiSlots.Length; i++)
         {
-            if (i < items.Count)
+            if (uiSlots[i] == null) continue;
+
+            if (i < items.Count && items[i] != null)
             {
                 uiSlots[i].sprite = items[i].icon;
                 uiSlots[i].enabled = true;
