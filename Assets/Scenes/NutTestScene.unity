@@ -119,6 +119,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &424504060 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4389765043622299808, guid: 503c0520403d5f84b998a3f683dd3b58, type: 3}
+  m_PrefabInstance: {fileID: 1628708002}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &453984500
 GameObject:
   m_ObjectHideFlags: 0
@@ -368,6 +373,43 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 14835071610585012, guid: 503c0520403d5f84b998a3f683dd3b58, type: 3}
   m_PrefabInstance: {fileID: 1628708002}
   m_PrefabAsset: {fileID: 0}
+--- !u!70 &560706043
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 424504060}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0.0022313595, y: 0.01115644}
+  m_Size: {x: 0.3438115, y: 0.5849844}
+  m_Direction: 0
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -740,10 +782,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6131005506748375299, guid: 503c0520403d5f84b998a3f683dd3b58, type: 3}
+      propertyPath: slot1
+      value: 
+      objectReference: {fileID: 11400000, guid: c189f68ca11badd45bd00e167b60556e, type: 2}
+    - target: {fileID: 6131005506748375299, guid: 503c0520403d5f84b998a3f683dd3b58, type: 3}
+      propertyPath: slot2
+      value: 
+      objectReference: {fileID: 11400000, guid: f9416bbf990da444c8f5abd00f8e7744, type: 2}
+    - target: {fileID: 6131005506748375299, guid: 503c0520403d5f84b998a3f683dd3b58, type: 3}
+      propertyPath: itemWorldPrefab
+      value: 
+      objectReference: {fileID: 8077317284799078063, guid: 41dfa0a9f3c4b9749ba66bba92105634, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4389765043622299808, guid: 503c0520403d5f84b998a3f683dd3b58, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 560706043}
   m_SourcePrefab: {fileID: 100100000, guid: 503c0520403d5f84b998a3f683dd3b58, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
