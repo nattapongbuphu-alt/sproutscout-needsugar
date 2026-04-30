@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 7b1a4147875d1e543b61f8abab3adda9
+guid: 6bb003ad545ae17478911d5c250ef71b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2050912513028015577
-    second: Dirt1_0
+      213: -2211912606027319233
+    second: Dirt_Test_03_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -40,9 +40,9 @@ TextureImporter:
     filterMode: 0
     aniso: 1
     mipBias: 0
-    wrapU: 1
-    wrapV: 1
-    wrapW: 1
+    wrapU: 0
+    wrapV: 0
+    wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -96,11 +96,24 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Dirt1_0
+      name: Dirt_Test_03_0
       rect:
         serializedVersion: 2
         x: 0
@@ -115,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9d5407c701e467c10800000000000000
-      internalID: 2050912513028015577
+      spriteID: f38788b3435bd41e0800000000000000
+      internalID: -2211912606027319233
       vertices: []
       indices: 
       edges: []
@@ -135,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Dirt1_0: 2050912513028015577
+      Dirt_Test_03_0: -2211912606027319233
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
